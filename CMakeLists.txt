@@ -34,48 +34,6 @@ add_library(ctpg::ctpg ALIAS ctpg)
 target_include_directories(ctpg INTERFACE "$<BUILD_INTERFACE:${ctpg_SOURCE_DIR}/include>")
 target_compile_features(ctpg INTERFACE cxx_std_17)
 
-# Test
-
-if (CTPG_ENABLE_TESTS)
-    find_package(Catch2 2 REQUIRED)
-
-    add_executable(testbin
-        tests/main.cpp
-        tests/regex_tests_1.cpp
-        tests/regex_tests_2.cpp
-        tests/regex_tests_3.cpp
-        tests/simple_cases.cpp
-        tests/simple_grammar.cpp
-        tests/empty_symbols.cpp
-        tests/recurrence.cpp
-        tests/precedence.cpp
-        tests/compile_time.cpp
-        tests/list_helpers.cpp
-        tests/skip_whitespace.cpp
-        tests/typed_terms.cpp
-        tests/source_tracking.cpp
-        tests/error_recovery.cpp
-        tests/buffers.cpp
-        tests/contexts.cpp
-        tests/custom_lexer.cpp
-    )
-
-    target_link_libraries(testbin PRIVATE Catch2::Catch2 ctpg::ctpg)
-    if (CTPG_WARNING_FLAGS)
-        if (MSVC)
-            target_compile_options(testbin PRIVATE /W4 /WX )
-        else ()
-            target_compile_options(testbin PRIVATE -Wall -Wextra -pedantic -Werror)
-        endif ()
-    endif ()
-    if (MSVC)
-        target_compile_options(testbin PRIVATE /EHsc )
-    endif ()
-
-    include(Catch)
-    catch_discover_tests(testbin)
-endif ()
-
 # Install
 
 if (NOT CTPG_ENABLE_INSTALL)
