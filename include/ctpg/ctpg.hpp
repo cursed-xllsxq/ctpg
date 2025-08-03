@@ -154,7 +154,7 @@ namespace stdex
         constexpr T* data() { return the_data; }
         constexpr size_type size() const { return current_size; }
         constexpr bool empty() const { return current_size == 0; }
-        constexpr void reserve(size_type) const {};
+        constexpr void reserve(size_type) const {}
         constexpr const T& operator[](size_type idx) const { return the_data[idx]; }
         constexpr T& operator[](size_type idx) { return the_data[idx]; }
         constexpr void push_back(const T& v) { the_data[current_size++] = v; }
@@ -1577,7 +1577,7 @@ namespace detail
 
         constexpr auto operator()(const nterm<ValueType>& nt) const;
 
-        constexpr static const char* get_name() { return "##"; };
+        constexpr static const char* get_name() { return "##"; }
     };
 
     struct eof
