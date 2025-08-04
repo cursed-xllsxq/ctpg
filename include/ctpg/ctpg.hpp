@@ -453,7 +453,7 @@ namespace utils
 
     constexpr char_names c_names = {};
 
-    [[gnu::no_sanitize("null")]]
+  
     constexpr bool str_equal(const char* str1, const char* str2)
     {
         if ((str1 == nullptr) || (str2 == nullptr))
